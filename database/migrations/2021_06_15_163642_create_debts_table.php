@@ -15,6 +15,12 @@ class CreateDebtsTable extends Migration
     {
         Schema::create('debts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('creditor_id')->comment('lends money')->constrained('users');
+            $table->foreignId('debtor_id')->comment('owes money')->constrained('users');
+            $table->string('description');
+            $table->unsignedBigInteger('price');
+            $table->boolean('is_paid');
+            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
     }
