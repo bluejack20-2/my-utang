@@ -56,10 +56,10 @@
                                                             {{ $debt->creditor->name }}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            {{ $debt->description }}
+                                                            {{ Str::title($debt->description) }}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            Rp.{{ number_format($debt->price, 2) }}
+                                                            <b>Rp{{ number_format($debt->price, 2) }}</b>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                             {{ $debt->created_at->toDayDateTimeString() }}
@@ -158,10 +158,10 @@
                                                             {{ $debt->debtor->name }}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            {{ $debt->description }}
+                                                            {{ Str::title($debt->description) }}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                            Rp.{{ number_format($debt->price, 2) }}
+                                                            <b>Rp{{ number_format($debt->price, 2) }}</b>
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                             {{ $debt->created_at->toDayDateTimeString() }}
