@@ -26,8 +26,7 @@ class CreateDebtController extends Controller
 
         Debt::create($data);
 
-        return redirect()
-            ->route('dashboard')
+        return back()
             ->with('flash.banner', 'Debt created.')
             ->with('flash.bannerStyle', 'success');
     }

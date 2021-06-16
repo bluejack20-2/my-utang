@@ -3,6 +3,6 @@
 
 ## Todo
 
-[] qr code bca / payment
+[x] qr code bca / payment
 [] login with gmail
 [] push notification
