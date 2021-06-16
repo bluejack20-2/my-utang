@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateDebtController;
-use App\Http\Controllers\ShowCreateDebtFormController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarkDebtAsPaidController;
 use App\Http\Controllers\MarkDebtAsUnpaidController;
+use App\Http\Controllers\ShowCreateDebtFormController;
+use App\Http\Livewire\Profile\UpdateQrCodeForm;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::post('/create', CreateDebtController::class)->name('create');
             Route::post('/mark-paid/{debt}', MarkDebtAsPaidController::class)->name('mark-paid');
             Route::post('/mark-unpaid/{debt}', MarkDebtAsUnpaidController::class)->name('mark-unpaid');
+
+        });
+    });
+
+    Route::name('user.')->group(function () {
+        Route::prefix('users')->group(function () {
+
+            Route::get('/qr-code', UpdateQrCodeForm::class)->name('qr-code');
 
         });
     });

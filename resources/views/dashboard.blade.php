@@ -8,14 +8,14 @@
     <main class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow rounded-lg">
-                <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                     <div class="px-4 py-5 sm:px-6">
                         <x-jet-button>
                             <a href="{{ route('debt.create-form') }}">create debt</a>
                         </x-jet-button>
                     </div>
-                    <div class="px-4 py-5 sm:p-6 grid grid-cols-2 gap-8">
+
+                    <div class="px-4 py-5 sm:p-6 grid grid-cols-1 gap-8">
                         <section>
                             <h3 class="mb-4">Unpaid Debts</h3>
 
@@ -50,7 +50,7 @@
                                                 <tbody>
                                                 @foreach ($unpaidDebts as $debt)
                                                     <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-gray-200">
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 truncate">
                                                             {{ $debt->creditor->name }}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -62,7 +62,8 @@
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                             {{ $debt->created_at->toDayDateTimeString() }}
                                                         </td>
-                                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium @if ($debt->creditor->payment_qr_code_path) grid grid-cols-2 gap-2 @endif"
+                                                            x-data="{ open: false }">
                                                             @if ($debt->is_paid)
                                                                 <form method="post"
                                                                       action="{{ route('debt.mark-unpaid', $debt) }}">
@@ -79,6 +80,28 @@
                                                                         mark as paid
                                                                     </x-jet-button>
                                                                 </form>
+                                                            @endif
+
+                                                            @if ($debt->creditor->payment_qr_code_path)
+                                                                <x-jet-secondary-button class="justify-center"
+                                                                                        @click="open = true">
+                                                                    qr code
+                                                                </x-jet-secondary-button>
+
+                                                                <aside x-show="open"
+                                                                       class="fixed inset-0 w-screen h-screen flex justify-center">
+                                                                    <div
+                                                                        @click="open = false"
+                                                                        style="z-index: -1;"
+                                                                        class="absolute w-screen h-screen bg-black opacity-50"></div>
+
+                                                                    <div class="mx-auto py-8">
+                                                                        <img
+                                                                            src="{{ asset(Storage::url($debt->creditor->payment_qr_code_path)) }}"
+                                                                            alt="payment qr code"
+                                                                            class="h-full rounded">
+                                                                    </div>
+                                                                </aside>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -129,7 +152,7 @@
                                                 <tbody>
                                                 @foreach ($myDebts as $debt)
                                                     <tr class="{{ $loop->odd ? 'bg-white' : 'bg-gray-50' }} hover:bg-gray-200">
-                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 truncate">
                                                             {{ $debt->debtor->name }}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
