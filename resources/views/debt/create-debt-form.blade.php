@@ -15,8 +15,10 @@
                         <ol>
                             @foreach ($users as $user)
                                 <li class="my-4 flex items-center">
-                                    <input type="radio" name="debtor_id" value="{{ $user->id }}" class="mr-2">
-                                    <span>{{ $user->name }}</span>
+                                    <label>
+                                        <input type="radio" name="debtor_id" value="{{ $user->id }}" class="mr-2">
+                                        <span>{{ $user->name }}</span>
+                                    </label>
                                 </li>
                             @endforeach
                         </ol>
