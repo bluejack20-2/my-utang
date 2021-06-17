@@ -26,7 +26,7 @@ class UnpaidDebts extends Component
             'unpaidDebts' => Debt::where('is_paid', '=', false)
                 ->where('debtor_id', '=', $request->user()->id)
                 ->orderBy('created_at')
-                ->paginate(1)
+                ->paginate()
         ]);
     }
 }
