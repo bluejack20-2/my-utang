@@ -5,11 +5,17 @@ namespace App\Http\Livewire\Dashboard;
 use App\Models\Debt;
 use Illuminate\Http\Request;
 use Livewire\Component;
-use Livewire\WithPagination;
 
-class UnpaidDebts extends Component
+class AllDebts extends Component
 {
-    use WithPagination;
+    public $showCreateDebtModal = false;
+
+    protected $listeners = ['createDebt'];
+
+    public function createDebt($data)
+    {
+        Debt::create($data);
+    }
 
     public function markAsPaid(Debt $debt)
     {
@@ -17,6 +23,11 @@ class UnpaidDebts extends Component
             'is_paid' => true,
             'paid_at' => now()
         ]);
+    }
+
+    public function deleteDebt(Debt $debt)
+    {
+        $debt->delete();
     }
 
     public function markAllAsPaid(Request $request)
@@ -39,6 +50,11 @@ class UnpaidDebts extends Component
             ->orderBy('created_at')
             ->paginate(5);
 
-        return view('livewire.dashboard.unpaid-debts', compact('totalPrice', 'unpaidDebts'));
+        $myDebts = Debt::where('is_paid', '=', false)
+            ->where('creditor_id', '=', $request->user()->id)
+            ->orderByDesc('created_at')
+            ->paginate(5);
+
+        return view('livewire.dashboard.all-debts', compact('totalPrice', 'unpaidDebts', 'myDebts'));
     }
 }

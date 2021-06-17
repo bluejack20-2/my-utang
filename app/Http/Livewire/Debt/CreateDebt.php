@@ -9,9 +9,9 @@ use Livewire\Component;
 
 class CreateDebt extends Component
 {
-    public $debtor_id=0;
-    public $description='';
-    public $price=0;
+    public $debtor_id = 0;
+    public $description = '';
+    public $price = 0;
 
     protected $rules = [
         'debtor_id' => 'required|exists:users,id',
@@ -36,12 +36,8 @@ class CreateDebt extends Component
             ])
             ->all();
 
-        Debt::create($data);
-
+        $this->emit('createDebt', $data);
         $this->reset();
-
-        session()->flash('flash.banner', 'Debt created.');
-        session()->flash('flash.bannerStyle', 'success');
     }
 
     public function render()
