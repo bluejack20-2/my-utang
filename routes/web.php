@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Debt\History;
 use App\Http\Livewire\Profile\UpdateQrCodeForm;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
+
+    Route::get('/history', History::class)->name('history');
 
     Route::name('user.')->group(function () {
         Route::prefix('users')->group(function () {

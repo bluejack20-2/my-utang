@@ -228,8 +228,9 @@
             </div>
         </section>
 
-        <x-jet-modal wire:model="showCreateDebtModal">
-            <livewire:debt.create-debt/>
-        </x-jet-modal>
     </div>
+
+    <x-jet-modal wire:model="showCreateDebtModal">
+        <livewire:debt.create-debt/>
+    </x-jet-modal>
 </div>

@@ -19,10 +19,7 @@ class AllDebts extends Component
 
     public function markAsPaid(Debt $debt)
     {
-        $debt->update([
-            'is_paid' => true,
-            'paid_at' => now()
-        ]);
+        $debt->update(['paid_at' => now()]);
     }
 
     public function deleteDebt(Debt $debt)
@@ -32,26 +29,23 @@ class AllDebts extends Component
 
     public function markAllAsPaid(Request $request)
     {
-        Debt::where('is_paid', '=', false)
-            ->where('debtor_id', '=', $request->user()->id)
-            ->update([
-                'is_paid' => true,
-                'paid_at' => now()
-            ]);
+        Debt::whereDebtorId($request->user()->id)
+            ->whereNull('paid_at')
+            ->update(['paid_at' => now()]);
     }
 
     public function render(Request $request)
     {
-        $builder = Debt::where('is_paid', '=', false)
-            ->where('debtor_id', '=', $request->user()->id);
+        $builder = Debt::whereDebtorId($request->user()->id)
+            ->whereNull('paid_at');
 
         $totalPrice = $builder->sum('price');
+
         $unpaidDebts = $builder
             ->orderBy('created_at')
             ->paginate(5);
 
-        $myDebts = Debt::where('is_paid', '=', false)
-            ->where('creditor_id', '=', $request->user()->id)
+        $myDebts = $builder
             ->orderByDesc('created_at')
             ->paginate(5);
 

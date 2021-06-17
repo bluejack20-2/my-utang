@@ -46,6 +46,15 @@ class Debt extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'paid_at' => 'datetime',
+    ];
+
     public function debtor(): BelongsTo
     {
         return $this->belongsTo(User::class, 'debtor_id');

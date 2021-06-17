@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Debt;
 
-use App\Models\Debt;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Livewire\Component;
@@ -30,10 +29,7 @@ class CreateDebt extends Component
 
         $data = collect($data)
             ->forget('_token')
-            ->merge([
-                'creditor_id' => $request->user()->id,
-                'is_paid' => false
-            ])
+            ->merge(['creditor_id' => $request->user()->id])
             ->all();
 
         $this->emit('createDebt', $data);

@@ -1,4 +1,4 @@
-<form wire:submit.prevent="save" class="p-4">
+<form wire:submit.prevent="save" class="sm:p-6 lg:p-8">
     <ol class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         @foreach ($users as $user)
             <li>
