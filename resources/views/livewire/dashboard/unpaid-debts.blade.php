@@ -80,6 +80,16 @@
                             </td>
                         </tr>
                     @endforelse
+
+                    <tr class="bg-gray-100 border-t">
+                        <th colspan="2"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
+                            Total Price
+                        </th>
+                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 truncate">
+                            <b>Rp.{{ number_format($totalPrice, 2) }}</b>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 

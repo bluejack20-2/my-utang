@@ -21,11 +21,14 @@ class UnpaidDebts extends Component
 
     public function render(Request $request)
     {
-        return view('livewire.dashboard.unpaid-debts', [
-            'unpaidDebts' => Debt::where('is_paid', '=', false)
-                ->where('debtor_id', '=', $request->user()->id)
-                ->orderBy('created_at')
-                ->paginate(5)
-        ]);
+        $builder = Debt::where('is_paid', '=', false)
+            ->where('debtor_id', '=', $request->user()->id);
+
+        $totalPrice = $builder->sum('price');
+        $unpaidDebts = $builder
+            ->orderBy('created_at')
+            ->paginate(5);
+
+        return view('livewire.dashboard.unpaid-debts', compact('totalPrice', 'unpaidDebts'));
     }
 }
