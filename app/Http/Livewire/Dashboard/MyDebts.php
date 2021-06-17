@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Models\Debt;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,7 +15,7 @@ class MyDebts extends Component
     {
         $debt->update([
             'is_paid' => true,
-            'paid_at' => Carbon::now()
+            'paid_at' => now()
         ]);
     }
 

@@ -24,10 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::name('debt.')->group(function () {
         Route::prefix('debts')->group(function () {
 
-            Route::get('/create', ShowCreateDebtFormController::class)->name('create-form');
-            Route::post('/create', CreateDebtController::class)->name('create');
-            Route::post('/mark-paid/{debt}', MarkDebtAsPaidController::class)->name('mark-paid');
-            Route::post('/mark-unpaid/{debt}', MarkDebtAsUnpaidController::class)->name('mark-unpaid');
+            Route::view('/create', 'debt.create-debt')->name('create');
 
         });
     });

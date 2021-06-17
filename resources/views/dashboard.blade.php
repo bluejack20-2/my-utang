@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow rounded-lg">
                 <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
                     <div class="px-4 py-5 sm:px-6">
-                        <a href="{{ route('debt.create-form') }}">
+                        <a href="{{ route('debt.create') }}">
                             <x-jet-button>
                                 create debt
                             </x-jet-button>
