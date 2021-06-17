@@ -43,7 +43,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium @if ($debt->creditor->payment_qr_code_path) grid grid-cols-1 lg:grid-cols-2 gap-2 @endif"
                                 x-data="{ open: false }">
-                                <x-jet-button class="justify-center" type="submit" wire:click="markAsPaid({{ $debt }})">
+                                <x-jet-button class="justify-center" wire:click="markAsPaid({{ $debt }})">
                                     mark as paid
                                 </x-jet-button>
 
@@ -81,15 +81,23 @@
                         </tr>
                     @endforelse
 
-                    <tr class="bg-gray-100 border-t">
-                        <th colspan="2"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
-                            Total Price
-                        </th>
-                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 truncate">
-                            <b>Rp.{{ number_format($totalPrice, 2) }}</b>
-                        </td>
-                    </tr>
+                    @if ($totalPrice > 0)
+                        <tr class="bg-gray-100 border-t">
+                            <th colspan="2"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
+                                Total Price
+                            </th>
+                            <td colspan="2"
+                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 truncate">
+                                <b>Rp.{{ number_format($totalPrice, 2) }}</b>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <x-jet-button wire:click="markAllAsPaid">
+                                    Mark all as paid
+                                </x-jet-button>
+                            </td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
 

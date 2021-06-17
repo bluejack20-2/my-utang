@@ -19,6 +19,16 @@ class UnpaidDebts extends Component
         ]);
     }
 
+    public function markAllAsPaid(Request $request)
+    {
+        Debt::where('is_paid', '=', false)
+            ->where('debtor_id', '=', $request->user()->id)
+            ->update([
+                'is_paid' => true,
+                'paid_at' => now()
+            ]);
+    }
+
     public function render(Request $request)
     {
         $builder = Debt::where('is_paid', '=', false)

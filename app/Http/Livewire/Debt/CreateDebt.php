@@ -38,6 +38,8 @@ class CreateDebt extends Component
 
         Debt::create($data);
 
+        $this->reset();
+
         session()->flash('flash.banner', 'Debt created.');
         session()->flash('flash.bannerStyle', 'success');
     }
