@@ -59,6 +59,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @mixin \Eloquent
  * @property string $username
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
+ * @property string|null $payment_qr_code_path
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePaymentQrCodePath($value)
  */
 class User extends Authenticatable
 {

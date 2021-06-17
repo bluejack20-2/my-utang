@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CreateDebtController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarkDebtAsPaidController;
 use App\Http\Controllers\MarkDebtAsUnpaidController;
 use App\Http\Controllers\ShowCreateDebtFormController;
@@ -20,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::name('debt.')->group(function () {
         Route::prefix('debts')->group(function () {
