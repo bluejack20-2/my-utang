@@ -26,7 +26,7 @@ class MyDebts extends Component
             'myDebts' => Debt::where('is_paid', '=', false)
                 ->where('creditor_id', '=', $request->user()->id)
                 ->orderByDesc('created_at')
-                ->paginate()
+                ->paginate(5)
         ]);
     }
 }
