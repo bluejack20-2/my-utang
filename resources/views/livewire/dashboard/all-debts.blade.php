@@ -51,7 +51,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $debt->created_at->toDayDateTimeString() }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium @if ($debt->creditor->payment_qr_code_path) grid grid-cols-1 @if ($debt->creditor->payment_qr_code_path) xl:grid-cols-3 @else xl:grid-cols-3 @endif gap-2 @endif">
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium @if ($debt->creditor->payment_qr_code_path) grid grid-cols-1 xl:grid-cols-3 gap-2 @endif">
                                             <x-jet-button class="justify-center" wire:click="markAsPaid({{ $debt }})"
                                                           wire:loading.attr="disabled">
                                                 <svg wire:loading class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
