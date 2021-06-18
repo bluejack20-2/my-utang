@@ -3,6 +3,10 @@
         <x-jet-button wire:click="$set('showCreateDebtModal', true)">
             create debt
         </x-jet-button>
+
+        <x-jet-modal wire:model="showCreateDebtModal">
+            <livewire:debt.create-debt/>
+        </x-jet-modal>
     </div>
 
     <div class="px-4 py-5 sm:p-6 grid grid-cols-1 gap-8">
@@ -53,8 +57,9 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium grid grid-cols-1 xl:grid-cols-3 gap-2">
                                             <x-jet-button class="justify-center" wire:click="markAsPaid({{ $debt }})"
-                                                          wire:loading.attr="disabled">
-                                                <svg wire:loading class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                                          wire:loading.attr="disabled" wire:target="markAsPaid">
+                                                <svg wire:loading wire:target="markAsPaid"
+                                                     class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                                                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <circle class="opacity-25" cx="12" cy="12" r="10"
                                                             stroke="currentColor"
@@ -70,8 +75,10 @@
 
                                             <x-jet-danger-button class="justify-center"
                                                                  wire:click="deleteDebt({{ $debt }})"
-                                                                 wire:loading.attr="disabled">
-                                                <svg wire:loading class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                                                 wire:loading.attr="disabled"
+                                                                 wire:target="deleteDebt">
+                                                <svg wire:loading wire:target="deleteDebt"
+                                                     class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                                                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <circle class="opacity-25" cx="12" cy="12" r="10"
                                                             stroke="currentColor"
@@ -104,7 +111,8 @@
                                             <b>Rp.{{ number_format($totalPrice, 2) }}</b>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <x-jet-button wire:click="markAllAsPaid" wire:loading.attr="disabled">
+                                            <x-jet-button wire:click="markAllAsPaid" wire:loading.attr="disabled"
+                                                          wire:target="markAllAsPaid">
                                                 <svg wire:loading wire:target="markAllAsPaid"
                                                      class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                                                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -179,8 +187,9 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <x-jet-button class="justify-center" wire:click="markAsPaid({{ $debt }})"
-                                                          wire:loading.attr="disabled">
-                                                <svg wire:loading class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                                          wire:loading.attr="disabled" wire:target="markAsPaid">
+                                                <svg wire:loading wire:target="markAsPaid"
+                                                     class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                                                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <circle class="opacity-25" cx="12" cy="12" r="10"
                                                             stroke="currentColor"
@@ -194,8 +203,10 @@
 
                                             <x-jet-danger-button class="justify-center"
                                                                  wire:click="deleteDebt({{ $debt }})"
-                                                                 wire:loading.attr="disabled">
-                                                <svg wire:loading class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                                                 wire:loading.attr="disabled"
+                                                                 wire:target="deleteDebt">
+                                                <svg wire:loading wire:target="deleteDebt"
+                                                     class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
                                                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                     <circle class="opacity-25" cx="12" cy="12" r="10"
                                                             stroke="currentColor"
@@ -227,10 +238,5 @@
                 </div>
             </div>
         </section>
-
     </div>
-
-    <x-jet-modal wire:model="showCreateDebtModal">
-        <livewire:debt.create-debt/>
-    </x-jet-modal>
 </div>

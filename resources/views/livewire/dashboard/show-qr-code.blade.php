@@ -7,7 +7,8 @@
         <x-jet-modal wire:model="showModal">
             <img
                 src="{{ asset(Storage::url($debt->creditor->payment_qr_code_path)) }}"
-                alt="payment qr code">
+                alt="payment qr code"
+                class="mx-auto">
         </x-jet-modal>
     @else
         <x-jet-secondary-button class="w-full justify-center" disabled>
