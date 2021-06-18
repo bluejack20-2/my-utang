@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <x-jet-button type="submit" class="w-full" wire:loading.attr="disabled" wire:target="save">
+    <x-jet-button type="submit" class="w-full justify-center" wire:loading.attr="disabled" wire:target="save">
         <svg wire:loading wire:target="save" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

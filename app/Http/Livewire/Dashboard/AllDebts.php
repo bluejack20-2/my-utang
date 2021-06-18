@@ -5,9 +5,12 @@ namespace App\Http\Livewire\Dashboard;
 use App\Models\Debt;
 use Illuminate\Http\Request;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AllDebts extends Component
 {
+    use WithPagination;
+
     public $showCreateDebtModal = false;
 
     protected $listeners = ['createDebt'];
@@ -42,11 +45,11 @@ class AllDebts extends Component
         $totalPrice = $builder->sum('price');
 
         $unpaidDebts = $builder
-            ->orderBy('created_at')
+            ->orderByDesc('created_at')
             ->paginate(5);
 
-        $myDebts = $builder
-            ->orderByDesc('created_at')
+        $myDebts = Debt::whereCreditorId($request->user()->id)
+            ->orderBy('created_at')
             ->paginate(5);
 
         return view('livewire.dashboard.all-debts', compact('totalPrice', 'unpaidDebts', 'myDebts'));
