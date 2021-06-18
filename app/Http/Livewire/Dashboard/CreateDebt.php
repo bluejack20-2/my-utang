@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Debt;
+namespace App\Http\Livewire\Dashboard;
 
+use App\Models\Debt;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Livewire\Component;
@@ -32,13 +33,15 @@ class CreateDebt extends Component
             ->merge(['creditor_id' => $request->user()->id])
             ->all();
 
-        $this->emit('createDebt', $data);
+        Debt::create($data);
         $this->reset();
+
+        $this->emit('refresh');
     }
 
     public function render()
     {
-        return view('livewire.debt.create-debt', [
+        return view('livewire.dashboard.create-debt', [
             'users' => User::orderBy('username')->get()
         ]);
     }
