@@ -1,6 +1,6 @@
-<div>
+<div class="inline">
     @if ($debt->creditor->payment_qr_code_path)
-        <x-jet-secondary-button class="w-full justify-center" wire:click="$set('showModal', true)">
+        <x-jet-secondary-button class="justify-center" wire:click="$set('showModal', true)">
             qr code
         </x-jet-secondary-button>
 
@@ -11,7 +11,7 @@
                 class="mx-auto">
         </x-jet-modal>
     @else
-        <x-jet-secondary-button class="w-full justify-center" disabled>
+        <x-jet-secondary-button class="justify-center" disabled>
             qr code
         </x-jet-secondary-button>
     @endif

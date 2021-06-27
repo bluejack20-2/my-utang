@@ -3,14 +3,14 @@
         @foreach ($users as $user)
             <li>
                 <label class="flex">
-                    <x-jet-input type="radio" wire:model="debtor_id" value="{{ $user->id }}" class="mr-2 m-1"/>
+                    <x-jet-input type="checkbox" wire:model="debtors.{{ $user->id }}" class="mr-2 m-1"/>
                     <span>{{ $user->name }}</span>
                 </label>
             </li>
         @endforeach
     </ol>
 
-    <x-jet-input-error for="debtor_id"/>
+    <x-jet-input-error for="debtors"/>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
         <div>

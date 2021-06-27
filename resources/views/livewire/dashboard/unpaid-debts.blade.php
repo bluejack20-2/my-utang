@@ -43,7 +43,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $debt->created_at->toDayDateTimeString() }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium grid grid-cols-1 xl:grid-cols-3 gap-2">
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <x-jet-button class="justify-center" wire:click="markAsPaid({{ $debt }})"
                                                   wire:loading.attr="disabled" wire:target="markAsPaid">
                                         <svg wire:loading wire:target="markAsPaid"
